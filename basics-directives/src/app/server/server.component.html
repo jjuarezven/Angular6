@@ -1,0 +1,18 @@
+<!-- Without squared brackets Angular interprets the content between the quotation marks as a string (as it is).
+
+     With squared brackets Angular tries to evaluate the expression between the quotation marks to a string.
+
+Now to ngClass in particular:
+
+     ngClass is always used with brackets, setting it to an expression:
+
+     https://angular.io/api/common/NgClass#usage-notes
+
+     Without brackets it would only have the same effect like a normal class attribute in HTML:
+
+     <div ngClass="..."> is the same as <div class="..."> -->
+<p
+  [ngStyle]="{backgroundColor: getColor()}"
+  [ngClass]="{online: serverStatus === 'online'}">
+  {{ 'Server' }} with ID {{ serverId }} is {{ getServerStatus() }}
+</p>
