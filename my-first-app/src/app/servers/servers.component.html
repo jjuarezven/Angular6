@@ -1,2 +1,23 @@
+<!-- general rule of thumb is:
+
+Use string interpolation if your goal is output some text (e.g. <p>{‌{ someProperty }}</p> ) and use property binding
+when really setting a property of an element (e.g. <img [src]="someImageSource"> ).
+
+event binding: (click)="onCreateServer()
+How do you know to which Properties or Events of HTML Elements you may bind? You can basically bind to all Properties and Events - a good idea is to console.log()  the element you're interested in to see which properties and events it offers.
+
+Important: For events, you don't bind to onclick but only to click (=> (click)).
+he MDN (Mozilla Developer Network) offers nice lists of all properties and events of the element you're interested in. Googling for YOUR_ELEMENT properties  or YOUR_ELEMENT events  should yield nice results. data-explicacion="2 formas diferentes de implementar 2 way data binding"
+-->
+
+<label for="txtServerName">Server Name</label>
+<div data-explicacion="2 formas diferentes de implementar 2 way data binding">
+  <!-- <input type="text" name="txtServerName" class="form-control" (input)="onUpdateServerName($event)"> -->
+  <input type="text" name="txtServerName" class="form-control" [(ngModel)]="serverName">
+  <!-- <p>{{ serverName }}</p> -->
+</div>
+<button class="btn btn-primary" [disabled]="!allowNewServer" (click)="onCreateServer();">Add Server</button>
+<!-- <p [innerText]="allowNewServer"></p> -->
+<p>{{ serverCreationStatus }}</p>
 <app-server></app-server>
 <app-server></app-server>
