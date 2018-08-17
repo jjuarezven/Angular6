@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="well">
+        <p>The direction is the crucial point. If you want to pass values from a parent component to a child component, you use [...] and @Input(). If you want to listen to child’s events in the parent component, you use (...) and @Output().</p>
+        <p>
+            <code>serverElements</code> is a property of the parent component (AppComponent). In the ngFor loop each array item is assigned to the variable <code>serverElements</code> (<code>let</code> ensures that the scope is limited to the current
+            turn of the loop; the name <code>serverElements</code> can be choosen arbitrary). Then the current <code>serverElements</code> is passed as element to the child component (ServerElementComponent).
+        </p>
+    </div>
+
+    <div class="well">
+        <p>- In our <strong>cockpit-component.html</strong> we add events to both buttons that trigger the <strong>onAddServer()</strong> and <strong>onAddBlueprint()</strong> methods inside <strong>cockpit.component.ts</strong> when <strong>clicked</strong></p>
+        <p><br></p>
+        <p>- Once clicked, the event properties in <strong>cockpit.component.ts</strong> are <strong>emitted</strong> with the values from the <strong>newServerName</strong> and <strong>newServerContent</strong> properties, which are bound to the input fields</p>
+        <p><br></p>
+        <p>- The parent selector <strong>&lt;app-cockpit&gt;</strong> in <strong>app-component.html</strong> can <strong>listen</strong> to the events in <strong>cockpit-component.ts</strong> with<strong> (serverCreated)</strong> and <strong>(blueprintCreated)</strong>            as we have provided the <strong>@Output </strong>decorator on those event properties. These are custom event types that now behave like the inbuilt event types we previously used such as (click).&nbsp; </p>
+        <p><br></p>
+        <p>- The <strong>onServerAdded</strong> and <strong>onBlueprintAdded</strong> methods in <strong>app.component.ts</strong> are triggered at the point <strong>.emit</strong> is called on our cockpit event properties. The <strong>$event</strong> object
+            is passed in, which contains the server name and server content that is then added to our serverElements array. </p>
+        <p><br></p>
+        <p>- The array is displayed in our server-element component </p>
+        <p><br></p>
+    </div>
+    <hr>
+    <app-cockpit (serverCreated)="onServerAdded($event);" (bluePrintCreated)="onBlueprintAdded($event);"></app-cockpit>
+    <hr>
+    <div class="row">
+        <div class="col-xs-12">
+            <app-server-element *ngFor="let item of serverElements" [elementoALIAS]="item">
+              <!-- projecting content, cualquier contenido que se ponga dentro de un componente angular, por defecto no es tomado en cuenta a menos que se use ng-content-->
+                <p>
+                    <strong *ngIf="item.type === 'server'" style="color: red">{{ item.content }}</strong>
+                    <em *ngIf="item.type === 'blueprint'">{{ item.content }}</em>
+                </p>
+            </app-server-element>
+        </div>
+    </div>
+</div>
