@@ -10,5 +10,7 @@
 </head>
 <body>
   <app-root></app-root>
+  <p>Despite the fact that the <code>Hello {{name}}</code> code is inside of <code>child-component</code>, the <code>{{ name }}</code> variable will be still taken from the parent component.</p>
+  <p>Thus, everything that is passed to the child component through <code>ng-content</code> is actually a part of the parent component and will use variables from parent component.</p>
 </body>
 </html>
