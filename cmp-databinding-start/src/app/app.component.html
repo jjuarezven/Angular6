@@ -25,6 +25,7 @@
     <hr>
     <div class="row">
         <div class="col-xs-12">
+            <button class="btn btn-danger" (click)="onDestroyFirst();">Destroy first component</button>
             <app-server-element *ngFor="let item of serverElements" [elementoALIAS]="item">
               <!-- projecting content, cualquier contenido que se ponga dentro de un componente angular, por defecto no es tomado en cuenta a menos que se use ng-content-->
                 <p>
