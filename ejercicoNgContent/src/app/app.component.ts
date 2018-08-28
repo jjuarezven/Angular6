@@ -8,6 +8,8 @@ import {
 } from '@angular/core';
 import { StudyDetailsComponent } from './study-details/study-details.component';
 import { MessageComponent } from './message/message.component';
+import { UserComponent } from './user-component/user.component';
+
 
 declare var $: any;
 @Component({
@@ -72,7 +74,7 @@ export class AppComponent {
     this.componentRef.instance.mensajeExterno = message;
 
     this.entry2.clear();
-    const factory2 = this.resolver.resolveComponentFactory(StudyDetailsComponent);
+    const factory2 = this.resolver.resolveComponentFactory(UserComponent);
     this.componentRef2 = this.entry2.createComponent(factory2);
     this.componentRef2.instance.mensajeExterno2 = 'CONTENIDO MODAL';
     this.renderer.appendChild(this.d1.nativeElement, this.componentRef2.location.nativeElement);

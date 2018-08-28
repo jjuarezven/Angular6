@@ -5,16 +5,21 @@ import { AppComponent } from './app.component';
 import { ChildComponentComponent } from './child-component/child-component.component';
 import { MessageComponent } from './message/message.component';
 import { StudyDetailsComponent } from './study-details/study-details.component';
+import { FormsModule } from '@angular/forms';
+import { UserComponent } from './user-component/user.component';
+import { UserService } from './services/user-service';
+
 
 @NgModule({
   declarations: [
-    AppComponent, ChildComponentComponent, MessageComponent, StudyDetailsComponent
+    AppComponent, ChildComponentComponent, MessageComponent, StudyDetailsComponent, UserComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent],
-  entryComponents: [MessageComponent, StudyDetailsComponent]
+  entryComponents: [MessageComponent, StudyDetailsComponent, UserComponent]
 })
 export class AppModule { }
