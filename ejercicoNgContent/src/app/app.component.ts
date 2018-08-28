@@ -2,10 +2,14 @@ import {
   Component,
   ViewChild,
   ViewContainerRef,
-  ComponentFactoryResolver
+  ComponentFactoryResolver,
+  ElementRef,
+  Renderer2
 } from '@angular/core';
+import { StudyDetailsComponent } from './study-details/study-details.component';
 import { MessageComponent } from './message/message.component';
 
+declare var $: any;
 @Component({
   selector: 'app-root',
   /*
@@ -19,22 +23,31 @@ import { MessageComponent } from './message/message.component';
  `, */
   // usando select para reemplazar contenido
   template: `
-   <div>
-     <app-child-component>
-       <p content-header>{{name}} header !</p>
-       <p class="content-footer">{{name}} footer !</p>
-     </app-child-component>
-     <hr>
-     <div style="text-align:center">
-     <h1>
-         Welcome to {{ title }}!
-     </h1>
-     <template #messagecontainer>
-     </template>
-     <button (click)="createComponent('HOLA PATO');">Welcome</button>
-     <button (click)="destroyComponent();">NOT Welcome</button>
- </div>
-   </div>
+    <div>
+      <app-child-component>
+          <p content-header>{{name}} header !</p>
+          <p class="content-footer">{{name}} footer !</p>
+      </app-child-component>
+      <hr>
+      <div style="text-align:center">
+          <h1>
+              Welcome to {{ title }}!
+          </h1>
+          <ng-template #messagecontainer></ng-template>
+          <ng-template #messagecontainer2></ng-template>
+
+          <div class="btn-toolbar">
+            <button class="btn btn-primary" (click)="createComponent('HOLA');">Welcome</button>
+            <button class="btn btn-danger" (click)="destroyComponent();">NOT Welcome</button>
+          </div>
+          <div id='newStudyModal' class='modal fade' role='dialog'>
+              <div class='modal-dialog modal-lg'>
+                  <div id='newStudyModalContent' class='modal-content panel panel-primary' #d1>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
  `,
   styles: []
 })
@@ -42,10 +55,13 @@ export class AppComponent {
   name: string;
   title = 'app';
   componentRef: any;
+  componentRef2: any;
 
   @ViewChild('messagecontainer', { read: ViewContainerRef }) entry: ViewContainerRef;
+  @ViewChild('messagecontainer2', { read: ViewContainerRef }) entry2: ViewContainerRef;
+  @ViewChild('d1') d1: ElementRef;
 
-  constructor(private resolver: ComponentFactoryResolver) {
+  constructor(private resolver: ComponentFactoryResolver, private renderer: Renderer2) {
     this.name = 'Parent';
   }
 
@@ -53,7 +69,14 @@ export class AppComponent {
     this.entry.clear();
     const factory = this.resolver.resolveComponentFactory(MessageComponent);
     this.componentRef = this.entry.createComponent(factory);
-    this.componentRef.instance.message = message;
+    this.componentRef.instance.mensajeExterno = message;
+
+    this.entry2.clear();
+    const factory2 = this.resolver.resolveComponentFactory(StudyDetailsComponent);
+    this.componentRef2 = this.entry2.createComponent(factory2);
+    this.componentRef2.instance.mensajeExterno2 = 'CONTENIDO MODAL';
+    this.renderer.appendChild(this.d1.nativeElement, this.componentRef2.location.nativeElement);
+    $('#newStudyModal').modal('show');
   }
 
   destroyComponent() {
