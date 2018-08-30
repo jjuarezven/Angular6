@@ -34,7 +34,7 @@ export class UserComponent implements OnInit {
 		else {
       return;
     }
-    const newUser = createUser(form);
+    const newUser = this.createUser(form);
 
     this.userService.createUser(newUser);
 
@@ -56,17 +56,17 @@ export class UserComponent implements OnInit {
 	onProfileChange() {
     console.log('Profile Changed: ' + this.user.profile.prName);
   }
-	
+
 	compareTech(t1: Technology, t2: Technology): boolean {
     console.log(t1.techId + '-' + t2.techId);
     return t1 && t2 ? t1.techId === t2.techId : t1 === t2;
   }
 
   onAddServer(form: NgForm) {
-    this.eventoUsuario.emit(createUser(form));
+    this.eventoUsuario.emit(this.createUser(form));
   }
 
-  function createUser(form: NgForm) {
+  private createUser(form: NgForm) {
     const userName = form.controls['name'].value;
     const userProfile: Profile = form.controls['profile'].value;
     const userTechnologies: Technology[] = form.controls['selectedTechs'].value;
@@ -78,3 +78,4 @@ export class UserComponent implements OnInit {
     return newUser;
   }
 }
+
