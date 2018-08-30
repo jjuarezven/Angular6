@@ -6,8 +6,10 @@ import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '
   styleUrls: ['./cockpit.component.css']
 })
 export class CockpitComponent implements OnInit {
+  // eventos que son escuchados en el componente padre (app.component.html <app-cockpit (serverCreated)="onServerAdded($event);" (bluePrintCreated)="onBlueprintAdded($event);"></app-cockpit>)
   @Output() serverCreated = new EventEmitter<{ serverName: string, serverContent: string }>();
   @Output() bluePrintCreated = new EventEmitter<{ serverName: string, serverContent: string }>();
+
   @ViewChild('serverContentInput') serverContentInput: ElementRef;
 
   constructor() { }
@@ -26,7 +28,7 @@ export class CockpitComponent implements OnInit {
     this.serverCreated.emit({serverName: nameInput.value, serverContent: this.newServerContent});
   }
 */
-// usando @ViewChild
+// usando @ViewChild con serverContentInput
   onAddServer(nameInput: HTMLInputElement) {
     this.serverCreated.emit({serverName: nameInput.value, serverContent: this.serverContentInput.nativeElement.value});
   }

@@ -6,9 +6,9 @@ import {
   ElementRef,
   Renderer2
 } from '@angular/core';
-import { StudyDetailsComponent } from './study-details/study-details.component';
 import { MessageComponent } from './message/message.component';
 import { UserComponent } from './user-component/user.component';
+import { User } from './domain/user';
 
 
 declare var $: any;
@@ -48,6 +48,9 @@ declare var $: any;
                   </div>
               </div>
           </div>
+          <div *ngIf="showUser">
+            <h1>{{usuario | json}}</h1>
+          </div>
       </div>
     </div>
  `,
@@ -58,6 +61,8 @@ export class AppComponent {
   title = 'app';
   componentRef: any;
   componentRef2: any;
+  usuario: User;
+  showUser: boolean;
 
   @ViewChild('messagecontainer', { read: ViewContainerRef }) entry: ViewContainerRef;
   @ViewChild('messagecontainer2', { read: ViewContainerRef }) entry2: ViewContainerRef;
@@ -77,11 +82,21 @@ export class AppComponent {
     const factory2 = this.resolver.resolveComponentFactory(UserComponent);
     this.componentRef2 = this.entry2.createComponent(factory2);
     this.componentRef2.instance.mensajeExterno2 = 'CONTENIDO MODAL';
+
+    this.componentRef2.instance.eventoUsuario.subscribe((usuario) => {
+      this.showUser = true;
+      this.usuario = usuario;
+  });
+
     this.renderer.appendChild(this.d1.nativeElement, this.componentRef2.location.nativeElement);
     $('#newStudyModal').modal('show');
   }
 
   destroyComponent() {
     this.componentRef.destroy();
+  }
+
+  onServerAdded(serverData: string) {
+    console.log(serverData);
   }
 }

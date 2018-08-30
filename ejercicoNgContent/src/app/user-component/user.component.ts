@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { UserService } from '../services/user-service';
@@ -17,7 +17,8 @@ export class UserComponent implements OnInit {
   allProfiles: Profile[];
   allTechnologies: Technology[];
   user = new User();
-
+  eventoUsuario = new EventEmitter<User>();
+  
 	constructor(private userService: UserService) {}
 
   ngOnInit(): void {
@@ -33,14 +34,7 @@ export class UserComponent implements OnInit {
 		else {
       return;
     }
-    const userName = form.controls['name'].value;
-    const userProfile: Profile = form.controls['profile'].value;
-    const userTechnologies: Technology[] = form.controls['selectedTechs'].value;
-
-    const newUser = new User();
-    newUser.userName = userName;
-    newUser.profile = userProfile;
-    newUser.technologies = userTechnologies;
+    const newUser = createUser(form);
 
     this.userService.createUser(newUser);
 
@@ -66,5 +60,21 @@ export class UserComponent implements OnInit {
 	compareTech(t1: Technology, t2: Technology): boolean {
     console.log(t1.techId + '-' + t2.techId);
     return t1 && t2 ? t1.techId === t2.techId : t1 === t2;
+  }
+
+  onAddServer(form: NgForm) {
+    this.eventoUsuario.emit(createUser(form));
+  }
+
+  function createUser(form: NgForm) {
+    const userName = form.controls['name'].value;
+    const userProfile: Profile = form.controls['profile'].value;
+    const userTechnologies: Technology[] = form.controls['selectedTechs'].value;
+
+    const newUser = new User();
+    newUser.userName = userName;
+    newUser.profile = userProfile;
+    newUser.technologies = userTechnologies;
+    return newUser;
   }
 }

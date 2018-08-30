@@ -10,7 +10,7 @@ import { Component, OnInit, Input, ViewEncapsulation, OnChanges, SimpleChanges, 
   encapsulation: ViewEncapsulation.None
 })
 export class ServerElementComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
-  // elementoCompartido esta llegando desde el componente padre
+  // elementoCompartido esta llegando desde el componente padre (app.componen.html [elementoALIAS]="item")
   @Input('elementoALIAS') elementoCompartido: {
     type: string, name: string, content: string
   };
