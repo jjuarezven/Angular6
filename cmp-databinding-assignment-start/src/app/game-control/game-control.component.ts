@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-game-control',
   template: `
@@ -10,7 +10,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class GameControlComponent {
   @Output() numberGenerated = new EventEmitter<number>();
   myNumber = 0;
-  intervalId;
+  // intervalId se usa para tener un identificador del interval y poder pausarlo
+  intervalId: any;
   constructor() { }
 
   startGame() {

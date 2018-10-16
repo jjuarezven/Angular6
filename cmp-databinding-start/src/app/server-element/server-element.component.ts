@@ -18,13 +18,14 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
   @ViewChild('heading') header: ElementRef;
   @ContentChild('contentParagraph') paragraph: ElementRef;
 
-  constructor() {
-    console.log('constructor called');
-  }
-
+  // este es el mismo orden en el que se producen los eventos
   ngOnChanges(changes: SimpleChanges) {
     console.log('ngOnChanges called');
     console.log(changes);
+  }
+
+  constructor() {
+    console.log('constructor called');
   }
 
   ngOnInit() {

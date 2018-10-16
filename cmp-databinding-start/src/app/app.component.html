@@ -21,6 +21,7 @@
         <p><br></p>
     </div>
     <hr>
+    // estamos escuchando el evento emitido por app-cockpit mediante sus propiedades (serverCreated) y (bluePrintCreated) 
     <app-cockpit (serverCreated)="onServerAdded($event);" (bluePrintCreated)="onBlueprintAdded($event);"></app-cockpit>
     <hr>
     <div class="row">
