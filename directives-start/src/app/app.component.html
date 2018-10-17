@@ -19,7 +19,8 @@
                 <p>Only odd</p>
             </ng-template>
             <p appBasicHighLight>Style me with basic directive</p>
-            <p appBetterHighlight>Style me with better directive</p>
+            <!-- notar que [defaultColor]="'seashell'" highlighttColor="deepskyblue" puede ser usado indistintamente -->
+            <p appBetterHighlight [defaultColor]="'seashell'" highlighttColor="deepskyblue">Style me with better directive</p>
         </div>
     </div>
 </div>
