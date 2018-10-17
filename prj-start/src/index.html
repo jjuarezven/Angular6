@@ -1,14 +1,42 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>MyFirstApp</title>
-  <base href="/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<head>
+    <meta charset="utf-8">
+    <title>MyFirstApp</title>
+    <base href="/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
+
 <body>
-  <app-root></app-root>
+    <app-root></app-root>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+            <h3>Comunicación entre componentes, al hacer click en un item de la lista, aparezca el detalle</h3>
+            <h4>Se comienza por el componente más interno</h4>
+            <img src="./assets/Screenshot_1.jpg" alt="">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+            <h4>Ahora es el componente recipe-list que escucha el evento itemSelected del componente recipe-item. Posteriormente va a pasar la informacion de ese evento a su componente padre recipes-component, esto porque la comunicación entre componentes
+                usando @input y @output solo es posible en un solo nivel.
+            </h4>
+            <img src="./assets/Screenshot_2.jpg" alt="">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+            <h4>recipes-component al contener en su template a recipe-list y recipe-detail, sirve de coordinador para que la información proveniente de recipe-list se transfiera a recipe-detail
+            </h4>
+            <img src="./assets/Screenshot_3.jpg" alt="">
+        </div>
+    </div>
 </body>
+
 </html>
