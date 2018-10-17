@@ -1,14 +1,22 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>MyFirstApp</title>
-  <base href="/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<head>
+    <meta charset="utf-8">
+    <title>MyFirstApp</title>
+    <base href="/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
+
 <body>
-  <app-root></app-root>
+    <app-root></app-root>
+    <div class="well">
+        <h2>Por que es mejor evitar acceder directamente al dom y usar el Renderer?</h2>
+        <p>When using the renderer, manipulating the element is okay because you'll NOT directly interact with it but through the Renderer. The Renderer is essentially a "tool" provided by Angular that will manipulate DOM elements with both the runtime environment
+            and Angular in mind. So it will do that in a way that will not fail in non-DOM environments (e.g. server-side rendering) and it will also "inform" Angular about the change.</p>
+    </div>
 </body>
+
 </html>
