@@ -26,6 +26,12 @@
             <p appBasicHighLight>Style me with basic directive</p>
             <!-- notar que [defaultColor]="'seashell'" highlighttColor="deepskyblue" puede ser usado indistintamente -->
             <p appBetterHighlight [defaultColor]="'seashell'" highlighttColor="deepskyblue">Style me with better directive</p>
+            <div [ngSwitch]="value">
+              <p *ngSwitchCase="5">Value is 5</p>
+              <p *ngSwitchCase="10">Value is 10</p>
+              <p *ngSwitchCase="100">Value is 100</p>
+              <p *ngSwitchDefault>Default value</p>
+            </div>
         </div>
     </div>
 </div>
