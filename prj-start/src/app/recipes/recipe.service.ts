@@ -1,6 +1,8 @@
 import { Recipe } from './recipe.model';
+import { EventEmitter } from '@angular/core';
 
 export class RecipeService {
+    recipeSelected = new EventEmitter<Recipe>();
     private recipes: Recipe[] = [
         new Recipe('A test recipe', 'un test',
         'https://www.inspiredtaste.net/wp-content/uploads/2017/12/Easy-Bean-Chili-Recipe-4-1200.jpg'),
@@ -11,4 +13,5 @@ export class RecipeService {
     getRecipes() {
         return this.recipes.slice();
     }
+
 }

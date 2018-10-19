@@ -10,7 +10,7 @@
             <!-- aca estamos pasando datos al componente recipe-item a traves del ciclo for 
                 estamos escuchando el evento itemSelected de recipe-item
             -->
-            <app-recipe-item *ngFor="let recipeItem of recipes" [recipe]="recipeItem" (itemSelected)="onRecipeSelected(recipeItem);"></app-recipe-item>
+            <app-recipe-item *ngFor="let recipeItem of recipes" [recipe]="recipeItem"></app-recipe-item>
         </div>
     </div>
 </div>
