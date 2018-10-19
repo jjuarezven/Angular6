@@ -15,6 +15,7 @@ export class ShoppingListService {
 
   addIngredient(ingredient: Ingredient) {
     this.ingredients.push(ingredient);
+    // emite el evento a todos los suscritos para que actualicen sus datos
     this.ingredientChanged.emit(this.ingredients.slice());
   }
 }

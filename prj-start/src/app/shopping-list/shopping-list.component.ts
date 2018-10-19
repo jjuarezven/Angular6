@@ -14,6 +14,7 @@ export class ShoppingListComponent implements OnInit {
 
   ngOnInit() {
     this.ingredients = this.shoppingService.getIngredients();
+    // cuando se agrega un elemento al array del servicio, se emite una notificacion con los datos correspondientes
     this.shoppingService.ingredientChanged.subscribe((ingredients: Ingredient[]) => this.ingredients = ingredients);
   }
 }
