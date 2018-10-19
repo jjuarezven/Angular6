@@ -12,6 +12,77 @@
 
 <body>
     <app-root></app-root>
+    <h1>Esta pregunta muestra una forma alternativa de usar los servicios, sin usar recipe-service como intermediario</h1>
+    <div class="well">
+        <div class="original-question fx fx-lt">
+            <div class="question__info a11 fx">
+                <question-action-menu show-new-tab="showNewTab" instructor-view="instructorView" on-delete="onDelete" question="question" me="me" class="dib pull-right">
+                    <!---->
+                    <div dropdown="" class="dropdown question-action-menu" ng-if="showMenu" style=""> <button dropdown-toggle="" class="btn btn-tertiary btn-xs dropdown-toggle" data-deny-click-read="true" id="questionActionMenu2503610" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Question options"> <i data-deny-click-read="true" class="udi udi-ellipsis-v"></i> </button>
+                        <ul class="dropdown-menu dropdown-menu-right a11" role="menu" aria-labelledby="questionActionMenu2503610">
+                            <li role="presentation" ng-if="reportAbuseButtonEnabled">
+                                <report-abuse show-label="true" btn-class="'dropdown-menu-link'" use-anchor="true" show-tooltip="false" object-type="'coursediscussion'" object-id="question.id">
+                                    <react-component props="props" name="ReportAbuse"><span><a class="dropdown-menu-link" aria-label="Report abuse" href="javascript:void(0)"><span class="udi udi-flag"></span> Report abuse</a><span></span></span>
+                                    </react-component>
+                                </report-abuse>
+                            </li>
+                            <!---->
+                        </ul>
+                    </div>
+                    <!---->
+                </question-action-menu>
+                <!---->
+                <div ng-if="!instructorView" ng-show="!questionEditorState.isEditing" class="a10 bold" style="">Why do you pass thought the recipe service? Could you not just go directly to the shopping-list service?</div>
+                <!---->
+                <!---->
+                <!----><a ng-if="!question.is_banned_user" ng-href="/user/jeanmarcgingras/" target="_blank" href="/user/jeanmarcgingras/" class="" style="">Jean-Marc</a>
+                <!---->
+                <!---->
+                <!---->
+                <!----><a ng-if="question.related_object._class == 'lecture' &amp;&amp; question.related_object.object_index" ui-sref="base.taking.lecture({id: question.related_object.id})" ng-click="goToLecture(question.related_object)" translate="" href="/the-complete-guide-to-angular-2/learn/v4/t/lecture/6656246"
+                    class=""><span>· Lecture 113</span></a>
+                <!---->
+                <!---->
+                <!---->
+                <!----><span ng-if="!instructorView" class=""> · a year ago </span>
+                <!---->
+                <!---->
+                <div ng-show="!questionEditorState.isEditing" class="question__body" ng-bind-html="question.body | openBlankTarget" prettify="">
+                    <p>recipe-detail.component.ts<br></p><pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">constructor</span><span class="pun">(</span><span class="kwd">private</span><span class="pln"> </span><span class="typ">IngredientData</span><span class="pun">:</span><span class="pln"> </span><span class="typ">ShoppingListService</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="pun">}</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">ngOnInit</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="typ">SendIngredients</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L6"><span class="pln">  </span><span class="kwd">this</span><span class="pun">.</span><span class="typ">IngredientData</span><span class="pun">.</span><span class="typ">AddListIngredients</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">recipe</span><span class="pun">.</span><span class="pln">ingredients</span><span class="pun">);</span></li><li class="L7"><span class="pun">}</span></li></ol></pre>
+                    <p>shopping-list.service.ts</p><pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="typ">AddListIngredients</span><span class="pun">(</span><span class="pln">list</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Ingredient</span><span class="pun">[]):</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">  </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">let</span><span class="pln"> ing of list</span><span class="pun">)</span></li><li class="L3"><span class="pln">  </span><span class="pun">{</span></li><li class="L4"><span class="pln">    </span><span class="kwd">let</span><span class="pln"> temp</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Ingredient</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">ingredients</span><span class="pun">.</span><span class="pln">find</span><span class="pun">(</span><span class="pln">x </span><span class="pun">=&gt;</span><span class="pln"> x</span><span class="pun">.</span><span class="pln">name </span><span class="pun">===</span><span class="pln"> ing</span><span class="pun">.</span><span class="pln">name</span><span class="pun">);</span></li><li class="L5"><span class="pln">    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">temp </span><span class="pun">==</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span></li><li class="L6"><span class="pln">      </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">ingredients</span><span class="pun">.</span><span class="pln">push</span><span class="pun">(</span><span class="pln">ing</span><span class="pun">);</span></li><li class="L7"><span class="pln">    </span><span class="kwd">else</span></li><li class="L8"><span class="pln">      temp</span><span class="pun">.</span><span class="pln">amount </span><span class="pun">+=</span><span class="pln"> ing</span><span class="pun">.</span><span class="pln">amount</span><span class="pun">;</span></li><li class="L9"><span class="pln">  </span><span class="pun">}</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">  </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">ingredientsChanged</span><span class="pun">.</span><span class="pln">emit</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">ingredients</span><span class="pun">);</span></li><li class="L2"><span class="pun">}</span></li></ol></pre>
+                    <p><br></p>
+                </div>
+
+                <!---->
+            </div>
+        </div>
+        <div class="answer__info fx">
+            <answer-action-menu class="dib pull-right">
+                <!---->
+                <div dropdown="" class="dropdown answer-action-menu" ng-if="showMenu"> <button dropdown-toggle="" class="btn btn-tertiary btn-xs dropdown-toggle" id="answerActionMenu4768532" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Answer options"> <i class="udi udi-ellipsis-v"></i> </button>
+                    <ul class="dropdown-menu dropdown-menu-right a11" role="menu" aria-labelledby="answerActionMenu4768532">
+                        <!---->
+                        <!---->
+                        <!---->
+                        <li role="presentation" ng-if="reportAbuseButtonEnabled">
+                            <report-abuse show-tooltip="false" btn-class="'dropdown-menu-link'" use-anchor="true" show-label="true" object-type="'coursediscussionreply'" object-id="answer.id">
+                                <react-component props="props" name="ReportAbuse"><span><a class="dropdown-menu-link" aria-label="Report abuse" href="javascript:void(0)"><span class="udi udi-flag"></span> Report abuse</a><span></span></span>
+                                </react-component>
+                            </report-abuse>
+                        </li>
+                        <!---->
+                    </ul>
+                </div>
+                <!---->
+            </answer-action-menu>
+
+            <div>
+                <h3>Sure, you can do that. And both is perfectly fine. I decided to use the RecipeService because we are still mainly interacting with a Recipe here and using a Recipe feature (=&gt;&nbsp;add to list). Again, you could argue for both ;)</h3>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h1>Esquema anterior, sin usar Servicios</h1>
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-10">
