@@ -13,14 +13,11 @@ export class RecipeItemComponent implements OnInit {
   // no necesitamos enviar el item porque el componente padre recipe-list tiene la información del item
   @Output() itemSelected = new EventEmitter<void>(); */
   @Input() recipe: Recipe;
+  @Input() index: number;
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {}
-  
-  onItemSelected() {
-    this.recipeService.recipeSelected.emit(this.recipe);
-    //this.itemSelected.emit();
-  }
+
 }
 
 

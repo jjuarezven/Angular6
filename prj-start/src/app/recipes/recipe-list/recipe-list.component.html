@@ -1,16 +1,17 @@
 <div style="border-style: solid; border-color: blue;" title="app-recipe-list">
     <div class="row">
         <div class="col-xs-12">
-            <button class="btn btn-success">New recipe</button>
+                <button class="btn btn-success" (click)="onNewRecipe();">New recipe</button>
+            <!-- Forma alternativa
+                <button class="btn btn-success" routerLink="new">New recipe</button> -->
         </div>
     </div>
     <hr>
     <div class="row">
         <div class="col-xs-12">
-            <!-- aca estamos pasando datos al componente recipe-item a traves del ciclo for 
-                estamos escuchando el evento itemSelected de recipe-item
-            -->
-            <app-recipe-item *ngFor="let recipeItem of recipes" [recipe]="recipeItem"></app-recipe-item>
+            <!-- enviamos tanto el item como indice al componente app-recipe-item, que es la lista de enlaces sobre los que se hace click
+            y posteriormente va a llevar a RecipeDetailComponent con la informacion del id en [routerLink]="[index]" -->
+            <app-recipe-item *ngFor="let recipeItem of recipes; let i = index" [recipe]="recipeItem" [index]="i"></app-recipe-item>
         </div>
     </div>
 </div>

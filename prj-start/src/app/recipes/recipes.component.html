@@ -1,14 +1,9 @@
 <div class="row" style="border-style: solid; border-color: red;" title="Root component: app-recipes">
   <div class="col-md-5">
-      <!-- escucha el evento recipeWasSelected del componente recipe-list y declara el objeto selectedRecipe con el valor que recibe -->
       <app-recipe-list></app-recipe-list>
   </div>  
   <div class="col-md-7">
-    <!-- ahora el valor de selectedRecipe lo asigna a la variable [recipe] que esta declarada en recipe-detail  -->
-    <app-recipe-detail *ngIf="selectedRecipe; else infoText" [recipe]="selectedRecipe"></app-recipe-detail>
-    <ng-template #infoText>
-        <p>Please select a recipe</p>
-      </ng-template>
+    <router-outlet></router-outlet>
   </div> 
 </div>
 
