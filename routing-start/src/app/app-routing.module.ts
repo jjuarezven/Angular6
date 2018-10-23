@@ -35,6 +35,19 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
+
+  /*
+  The server has to be configured in a way that it serves the index.html instead of a 404 page in each case an unknown url
+  is requested, so that Angular's router can handle the correct routing.
+
+  We are using fake urls here, unlike in a traditional website, where the urls usually reflect the real places of the subpages.
+  In a SPA, when changing the url, we are not really moving to a different place but we only shift some content of the current
+  view. Manipulating the urls in this way is only possible in modern browsers which support the History API. In older browsers
+  you can mimic a similar behavior by using hashes for internal navigation on a page.
+
+  imports: [RouterModule.forRoot(appRoutes, {useHash: true})]
+
+  */
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
