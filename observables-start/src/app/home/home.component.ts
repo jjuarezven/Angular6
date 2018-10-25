@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { interval, Observable, Observer } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { interval, Observable, Observer, Subscription } from 'rxjs';
 
 
 
@@ -16,12 +16,16 @@ const beers = [
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+  obs1: Subscription;
+  obs2: Subscription;
+  obs3: Subscription;
   constructor() {}
 
   ngOnInit() {
-    /* const myNumbers = interval(1000);
-    myNumbers.subscribe((number: Number) => console.log(number)); */
+    const myNumbers = interval(1000);
+    this.obs1 = myNumbers.subscribe((number: Number) => console.log(number));
+
     const myObservable = Observable.create((observer: Observer<string>) => {
       setTimeout(() => {
         observer.next('first package');
@@ -37,7 +41,7 @@ export class HomeComponent implements OnInit {
         observer.next('third package');
       }, 6000);
     });
-    myObservable.subscribe(
+    this.obs2 = myObservable.subscribe(
       (data: string) => console.log(data),
       (error: string) => console.log(error),
       () => console.log('completed')
@@ -59,10 +63,17 @@ export class HomeComponent implements OnInit {
     }
 
     const myObserver = getObservableBeer();
-    myObserver.subscribe(
+    this.obs3 = myObserver.subscribe(
       beer => console.log('Subscriber got ' + beer.name),
       error => console.log(error),
       () => console.log('The stream is over')
     );
+  }
+
+  // cancelar las suscripciones para evitar que se sigan ejecutando
+  ngOnDestroy() {
+    this.obs1.unsubscribe();
+    this.obs2.unsubscribe();
+    this.obs3.unsubscribe();
   }
 }
