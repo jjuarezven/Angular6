@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { interval, Observable, Observer, Subscription } from 'rxjs';
-
+import 'rxjs/Rx';
 
 
 const beers = [
@@ -23,7 +23,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor() {}
 
   ngOnInit() {
-    const myNumbers = interval(1000);
+    // el operador map mapea la data de entrada con operaciones internas definidas en el cuerpo de la funcion y devuelve un nuevo Observable
+    const myNumbers = interval(1000).map((data: number) =>  data * 2);
     this.obs1 = myNumbers.subscribe((number: Number) => console.log(number));
 
     const myObservable = Observable.create((observer: Observer<string>) => {
