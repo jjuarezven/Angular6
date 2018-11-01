@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form (ngSubmit)="onSubmit(f);" #f="ngForm">
+        <!-- agrupa los controles que esten dentro del div como un objeto, sirve para validar los elementos en grupo -->
+        <div id="user-data" ngModelGroup="userData" #userData="ngModelGroup">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <!-- no binding, requerido para que Angular maneje el control dentro del Form ngModel name="username" -->
+            <input type="text" id="username" class="form-control" ngModel name="username" required>
+          </div>
+          <button class="btn btn-default" type="button" (click)="suggestUserName();">Suggest an Username</button>
+          <div class="form-group">
+            <label for="email">Mail</label>
+            <input type="email" id="email" class="form-control" ngModel name="email" required email #email="ngModel">
+            <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
+          </div>
+        </div>
+        <p *ngIf="!userData.valid && userData.touched">User data is invalid</p>
+        <div class="form-group">
+          <label for="secret">Secret Questions</label>
+          <!-- one way binding, para valor por defecto [ngModel]="defaultQuestion" -->
+          <select id="secret" class="form-control" [ngModel]="defaultQuestion" name="secret">
+            <option value="pet">Your first Pet?</option>
+            <option value="teacher">Your first teacher?</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <textarea name="questionAnswer" rows="3" ngModel [(ngModel)]="answer" class="form-control"></textarea>
+        </div>
+        <p>Your replay: {{answer}}</p>
+        <div class="radio" *ngFor="let gender of genders">
+          <label for="">
+            <input type="radio" name="gender" [ngModel]="genders[1]" [value]="gender">
+            {{gender}}
+          </label>
+        </div>
+        <button [disabled]="!f.valid" class="btn btn-primary" type="submit">Submit</button>
+      </form>
+      <hr>
+      <div class="row"><div class="col-xs-12">
+        <h3>Your data</h3>
+        <p>User name: {{user.username}}</p>
+        <p>mail address: {{user.email}}</p>
+        <p>Secret question: {{user.secretQuestion}}</p>
+        <p>Answer: {{user.answer}}</p>
+        <p>Gender: {{user.gender}}</p>
+      </div></div>
+    </div>
+  </div>
+</div>
