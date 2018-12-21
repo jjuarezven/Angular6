@@ -10,6 +10,7 @@ export class AppComponent {
   // tenemos acceso al formulario
   @ViewChild('f')
   signupForm: NgForm;
+
   answer = '';
   defaultQuestion = 'pet';
   genders = ['Male', 'Female'];
