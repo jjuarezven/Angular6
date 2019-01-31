@@ -32,10 +32,32 @@ export class AppComponent implements OnInit {
     this.singupForm.statusChanges.subscribe((status) =>
       console.log(status)
     );
+
+    // setting and patching values
+    this.singupForm.setValue({
+      userData: {
+        username: 'Jose',
+        email: 'speedy@terra.com'
+      },
+      gender: 'male',
+      hobbies: []
+    });
+
+    this.singupForm.patchValue({
+      userData: {
+        username: 'Concha'
+      }
+    });
+
   }
 
   onSubmit() {
     console.log(this.singupForm.value);
+    this.singupForm.reset({
+      userData: {},
+      gender: 'female',
+      hobbies: []
+    });
   }
 
   onAddHobby() {
