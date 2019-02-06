@@ -46,9 +46,13 @@ export class AppComponent {
     this.serverService
       .getServers()
       .subscribe(
-        (response : Response) => {
+        // cambiamos la transformacion al servicio en lugar de hacerla en cada sitio donde se invoque el metodo
+        /* (response : Response) => {
           const data = response.json();
           console.log(data);
+        }, */
+        (servers: any) => {
+          console.log(servers);
         },
         error => console.log(error)
       );
