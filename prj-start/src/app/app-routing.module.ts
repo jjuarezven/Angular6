@@ -6,6 +6,7 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 const appRoutes: Routes = [
   // pagina inicial. path vacio '' es parte de todas las rutas asi que se debe usar pathMatch: 'full' para evitar error
@@ -27,7 +28,9 @@ const appRoutes: Routes = [
   {
     path: 'shopping-list',
     component: ShoppingListComponent
-  }
+  },
+  // signup
+  { path: 'signup', component: SignupComponent }
 ];
 
 @NgModule({
