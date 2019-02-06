@@ -11,4 +11,9 @@ export class ServerService {
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http.post('https://practica-http.firebaseio.com/data.json', servers, {headers: headers});
   }
+
+  getServers() {
+    return this.http.get('https://practica-http.firebaseio.com/data.json');
+  }
+  }
 }
