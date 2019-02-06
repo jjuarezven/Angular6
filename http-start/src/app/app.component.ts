@@ -10,6 +10,7 @@ import { Response } from "@angular/http";
 export class AppComponent implements OnInit {
   constructor(private serverService: ServerService) {}
   servers = [];
+  appName = this.serverService.getAppName();
 
   ngOnInit() {
     this.onGet();
@@ -56,8 +57,8 @@ export class AppComponent implements OnInit {
           const data = response.json();
           console.log(data);
         }, */
-      (servers: any) => this.servers = servers,
-      (error) => console.log(error)
+      (servers: any) => (this.servers = servers),
+      error => console.log(error)
     );
   }
 }
