@@ -56,10 +56,8 @@ export class AppComponent implements OnInit {
           const data = response.json();
           console.log(data);
         }, */
-      (servers: any) => {
-        this.servers = servers;
-      },
-      error => console.log(error)
+      (servers: any) => this.servers = servers,
+      (error) => console.log(error)
     );
   }
 }
