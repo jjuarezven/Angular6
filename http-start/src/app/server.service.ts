@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { Http } from "@angular/http";
+import { Injectable } from '@angular/core';
+import { Http, Headers } from '@angular/http';
 
 @Injectable()
 export class ServerService {
@@ -8,6 +8,7 @@ export class ServerService {
   }
 
   storeServers(servers: any[]) {
-    return this.http.post('https://practica-http.firebaseio.com/data.json', servers);
+    const headers = new Headers({'Content-Type': 'application/json'});
+    return this.http.post('https://practica-http.firebaseio.com/data.json', servers, {headers: headers});
   }
 }
