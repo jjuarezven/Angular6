@@ -13,9 +13,25 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a routerLink="/signup">Register</a></li>
-                <li><a routerLink="/signin">Sign In</a></li>
-                <li class="dropdown" appDropdown>
+                <!-- These both version should work ...
+
+                <ng-template [ngIf]="condition">
+                    <div>To be, or not to be - that is the question</div>
+                </ng-template>
+                vs.
+                
+                <div *ngIf="condition">To be, or not to be - that is the question</div> 
+                
+                ... but no mixture of them.
+                
+                In practice you will use the second one, if you want to show one single element conditionally. Angular always uses the first 
+                one under the hood. The second one is only some syntactic sugar and equivalent to the first one. -->
+
+                <ng-template [ngIf]="!authService.isAuthenticated()">
+                    <li><a routerLink="/signup">Register</a></li>
+                    <li><a routerLink="/signin">Sign In</a></li>
+                </ng-template>
+                <li class="dropdown" appDropdown *ngIf="authService.isAuthenticated();">
                     <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li>
