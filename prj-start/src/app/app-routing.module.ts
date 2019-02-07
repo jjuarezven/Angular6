@@ -8,6 +8,7 @@ import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.com
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
+import { AuthGuard } from './auth/auth-guard.service';
 
 const appRoutes: Routes = [
   // pagina inicial. path vacio '' es parte de todas las rutas asi que se debe usar pathMatch: 'full' para evitar error
@@ -20,10 +21,10 @@ const appRoutes: Routes = [
       { path: '', component: RecipeStartComponent },
       // el mismo componente tanto para creacion como para edicion.
       // Every time the static path should come before the dynamic one para evitar errores
-      { path: 'new', component: RecipeEditComponent },
+      { path: 'new', component: RecipeEditComponent, canActivate: [AuthGuard] },
       // recipe detail
       { path: ':id', component: RecipeDetailComponent },
-      { path: ':id/edit', component: RecipeEditComponent }
+      { path: ':id/edit', component: RecipeEditComponent, canActivate: [AuthGuard] }
     ]
   },
   {
