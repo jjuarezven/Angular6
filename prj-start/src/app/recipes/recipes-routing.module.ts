@@ -10,7 +10,7 @@ import { RecipeDetailComponent } from "./recipe-detail/recipe-detail.component";
 
 const recipesRoutes: Routes = [
   {
-    path: "recipes",
+    path: "",
     component: RecipesComponent,
     children: [
       // por defecto, ningun recipe seleccionado
