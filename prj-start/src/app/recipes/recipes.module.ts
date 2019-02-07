@@ -6,9 +6,9 @@ import { RecipeItemComponent } from "./recipe-list/recipe-item/recipe-item.compo
 import { RecipeStartComponent } from "./recipe-start/recipe-start.component";
 import { RecipeEditComponent } from "./recipe-edit/recipe-edit.component";
 import { ReactiveFormsModule } from "@angular/forms";
-import { DropdownDirective } from "../shared/dropdown.directive";
 import { CommonModule } from "@angular/common";
 import { RecipesRoutingModule } from "./recipes-routing.module";
+import { SharedModule } from "../shared/shared-module";
 
 @NgModule({
   declarations: [
@@ -17,9 +17,8 @@ import { RecipesRoutingModule } from "./recipes-routing.module";
     RecipeListComponent,
     RecipeEditComponent,
     RecipeDetailComponent,
-    RecipeItemComponent,
-    DropdownDirective
+    RecipeItemComponent
   ],
-  imports: [CommonModule, ReactiveFormsModule, RecipesRoutingModule]
+  imports: [CommonModule, ReactiveFormsModule, RecipesRoutingModule, SharedModule]
 })
 export class RecipesModule {}
