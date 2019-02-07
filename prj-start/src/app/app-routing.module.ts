@@ -31,7 +31,7 @@ const appRoutes: Routes = [
     component: ShoppingListComponent
   },
   // signup
-  { path: 'signup', component: SignupComponent }
+  { path: 'signup', component: SignupComponent },
   { path: 'signin', component: SigninComponent }
 ];
 
