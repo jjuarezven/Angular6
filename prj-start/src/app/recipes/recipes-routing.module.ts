@@ -1,4 +1,3 @@
-
 // tenemos que crear un routingModule por cada modulo que queramos agregar
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
@@ -29,8 +28,11 @@ const recipesRoutes: Routes = [
   }
 ];
 
+// los guards son practicamente los unicos servicios que se pueden tener a nivel de modulos feature, mas especificamente en la configuracion
+// de sus rutas porque es alli donde se usan
 @NgModule({
   imports: [RouterModule.forChild(recipesRoutes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class RecipesRoutingModule {}

@@ -23,13 +23,7 @@ import { CoreModule } from "./core/core-module";
     AuthModule,
     CoreModule
   ],
-  providers: [
-    ShoppingListService,
-    RecipeService,
-    DataStorageService,
-    AuthService,
-    AuthGuard
-  ],
+  // la idea es mantener AppModule lo más limpio posible, por eso los providers ahora se referencia en el CoreModule
   bootstrap: [AppComponent]
 })
 export class AppModule {}
