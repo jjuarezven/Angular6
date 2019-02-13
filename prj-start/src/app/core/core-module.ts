@@ -9,6 +9,7 @@ import { DataStorageService } from "../shared/data-storage-service";
 import { AuthService } from "../auth/auth.service";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthInterceptor } from "../shared/auth.interceptor";
+import { LogginInterceptor } from "../shared/logging.interceptor";
 
 @NgModule({
   declarations: [HeaderComponent, HomeComponent],
@@ -19,8 +20,9 @@ import { AuthInterceptor } from "../shared/auth.interceptor";
     RecipeService,
     DataStorageService,
     AuthService,
-    // sintaxis especial para agregar interceptors
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    // sintaxis especial para agregar interceptors, se ejecutan segun el orden en el que se declaran
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LogginInterceptor, multi: true}
   ]
 })
 export class CoreModule {}
