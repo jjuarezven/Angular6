@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+</head>
+
+<body>
+    <button>click me</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.3.0/Rx.js"></script>
+    <script type="text/javascript">
+        var button = document.querySelector('button');
+        //button.addEventListener('click', (event) => console.log(event));
+        Rx.Observable.fromEvent(button, 'click')
+            .throttleTime(1000)
+            .map((data) => {
+                return data.clientX;
+            })
+            // coordinate es el mismo data procedente de map
+            .subscribe(
+                (coordinate) => console.log(coordinate)
+            );
+
+        // observables
+        var observer = {
+            next: (value) => console.log(value),
+            error: (error) => console.log(error),
+            complete: () => console.log('completed!')
+        };
+
+        // no se pasa la variable observer para evitar conflictos de nombres
+        Rx.Observable.create(function(obs) {
+                obs.next('A value');
+                setTimeout(() => obs.complete(), 2000);
+                obs.next('value 2');
+            })
+            .subscribe(observer);
+    </script>
+</body>
+
+</html>
