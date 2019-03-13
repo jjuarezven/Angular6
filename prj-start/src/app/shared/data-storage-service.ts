@@ -2,6 +2,10 @@ import { Injectable } from "@angular/core";
 import { RecipeService } from "../recipes/recipe.service";
 import { Recipe } from "../recipes/recipe.model";
 import "rxjs/add/operator/map";
+<<<<<<< HEAD
+=======
+import { AuthService } from "../auth/auth.service";
+>>>>>>> 1376f97e3ae27be6339a8f98b006b5107f971b5f
 import { HttpClient, HttpRequest, HttpParams } from "@angular/common/http";
 
 @Injectable()
@@ -12,6 +16,11 @@ export class DataStorageService {
   ) {}
 
   storeRecipes() {
+<<<<<<< HEAD
+=======
+    const token = this.authService.getToken();
+
+>>>>>>> 1376f97e3ae27be6339a8f98b006b5107f971b5f
     /* return this.httpClient.put(
       "https://ng-recipe-book-f0b42.firebaseio.com/recipes.json",
       this.recipeService.getRecipes(),
@@ -28,8 +37,12 @@ export class DataStorageService {
       {
         reportProgress: true,
         // headers: new HttpHeaders().set('Authorization', 'Bearer sssss') // se pueden configurar headers
+<<<<<<< HEAD
         // ahora el token va a ser agregado por el interceptor
         //params: new HttpParams().set("auth", token)
+=======
+        params: new HttpParams().set("auth", token)
+>>>>>>> 1376f97e3ae27be6339a8f98b006b5107f971b5f
       }
     );
     return this.httpClient.request(req);
